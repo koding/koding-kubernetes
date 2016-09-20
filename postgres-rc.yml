@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  creationTimestamp: null
+  labels:
+    service: postgres
+  name: postgres
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    service: postgres
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service: postgres
+    spec:
+      containers:
+      - image: koding/postgres
+        imagePullPolicy: ""
+        name: postgres
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status:
+  replicas: 0

@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  creationTimestamp: null
+  labels:
+    service: koding
+  name: koding
+  namespace: default 
+spec:
+  replicas: 1
+  selector:
+    service: koding
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service: koding
+    spec:
+      containers:
+      - image: koding/koding:20160902
+        imagePullPolicy: ""
+        name: koding
+        args:
+        - "--version"
+        - "20160902"
+        ports:
+        - containerPort: 8090
+        env:
+        - name: KODINGENV
+          value: default
+        - name: KONFIG_MONGO
+          value: "$(MONGO_SERVICE_HOST):27017/koding"
+        - name: KONFIG_MQ_HOST
+          value: $(RABBITMQ_SERVICE_HOST)
+        - name: KONFIG_MQ_APIADDRESS
+          value: $(RABBITMQ_SERVICE_HOST)
+        - name: KONFIG_REDIS_HOST
+          value: $(REDIS_SERVICE_HOST)
+        - name: KONFIG_REDIS_PORT
+          value: "6379"
+        - name: KONFIG_MONITORINGREDIS_HOST
+          value: $(REDIS_SERVICE_HOST)
+        - name: KONFIG_MONITORINGREDIS_PORT
+          value: "6379"
+        - name: KONFIG_POSTGRES_HOST
+          value: $(POSTGRES_SERVICE_HOST)
+        - name: KONFIG_KONTROL_MONGOURL
+          value: "$(MONGO_SERVICE_HOST):27017/koding"
+        - name: KONFIG_KONTROL_POSTGRES_HOST
+          value: $(POSTGRES_SERVICE_HOST)
+        - name: KONFIG_KLOUD_MONGOURL
+          value: "$(MONGO_SERVICE_HOST):27017/koding"
+        - name: KONFIG_SOCIALAPI_MONGO
+          value: "$(MONGO_SERVICE_HOST):27017/koding"
+        - name: KONFIG_SOCIALAPI_MQ_HOST
+          value: $(RABBITMQ_SERVICE_HOST)
+        - name: KONFIG_SOCIALAPI_MQ_APIADDRESS
+          value: $(RABBITMQ_SERVICE_HOST)
+        - name: KONFIG_SOCIALAPI_POSTGRES_HOST
+          value: $(POSTGRES_SERVICE_HOST)
+        - name: KONFIG_SOCIALAPI_REDIS_URL
+          value: "$(REDIS_SERVICE_HOST):6379"
+        - name: KONFIG_VMWATCHER_MONGO
+          value: "$(MONGO_SERVICE_HOST):27017/koding"
+        - name: KONFIG_VMWATCHER_REDIS
+          value: "$(REDIS_SERVICE_HOST):6379"
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status:
+  replicas: 0

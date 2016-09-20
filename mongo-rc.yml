@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  creationTimestamp: null
+  labels:
+    service: mongo
+  name: mongo
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    service: mongo
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service: mongo
+    spec:
+      containers:
+      - image: koding/mongo
+        imagePullPolicy: ""
+        name: mongo
+        args:
+        - "--dbpath"
+        - "/opt/db"
+        - "--smallfiles"
+        - "--nojournal"
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status:
+  replicas: 0

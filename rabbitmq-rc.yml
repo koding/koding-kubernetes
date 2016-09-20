@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  creationTimestamp: null
+  labels:
+    service: rabbitmq
+  name: rabbitmq
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    service: rabbitmq
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service: rabbitmq
+    spec:
+      containers:
+      - image: rabbitmq:3-management
+        imagePullPolicy: ""
+        name: rabbitmq
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status:
+  replicas: 0
