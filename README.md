@@ -10,6 +10,8 @@ Third, the versions of Mongo and Koding Docker images in these files are not up 
 
 Fourth, you will have to determine based upon your setup how to expose koding-srv to the public.  In this example, all of the Kubernetes cluster's external IP addresses were added to the externalIPs field in koding-srv.yml.  You may want to specify which machine(s) Koding deploys to using a label and then add these externalIPs, or you can use a LoadBalancer if your cloud provider supports it.
 
+Lastly, we recommend that you leave plenty of disk space on your VMs to run Koding.  You should have a minimum of 50GB of free disk space to install Koding.
+
 ##Launching
 `kubectl create -f koding-kubernetes/`
 
