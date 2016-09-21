@@ -17,7 +17,7 @@ spec:
         service: mongo
     spec:
       containers:
-      - image: koding/mongo
+      - image: koding/mongo:20160906
         imagePullPolicy: ""
         name: mongo
         args:

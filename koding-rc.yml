@@ -17,12 +17,12 @@ spec:
         service: koding
     spec:
       containers:
-      - image: koding/koding:20160902
+      - image: koding/koding:20160921
         imagePullPolicy: ""
         name: koding
         args:
         - "--version"
-        - "20160902"
+        - "20160921"
         ports:
         - containerPort: 8090
         env:

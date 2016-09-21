@@ -17,7 +17,7 @@ spec:
         service: postgres
     spec:
       containers:
-      - image: koding/postgres
+      - image: koding/postgres:20160824
         imagePullPolicy: ""
         name: postgres
         resources: {}
